@@ -4,23 +4,27 @@ function init() {
     var id;
 
     for (ndx = 0; ndx < numCount; ndx++) {
-        id = 'card-' + ndx;
+        id = 'id-a' + ndx;
         element = document.getElementById(id);
         if (element != null) {
-            console.log('add listener on ' + id);
             element.addEventListener('click', compareAnswer);
         }
     }
 }
 
+
 function compareAnswer(event) {
-    event.preventDefault();
-    console.log(event.target.innerHTML);
+    var val = event.target.innerHTML;
+    if (val === num.toString()) {
+        tryCount--;
+        if (tryCount === 0) {
+            alert('Round finish');
+            return;
+        }
+        updateContent();
+    }
 }
 
-function drawGrid() {
-
-}
 
 function updateContent() {
     var foundNdx = Math.round(Math.random() * (numCount - 1));
@@ -32,7 +36,7 @@ function updateContent() {
     console.log('Start update, numCount = ' + numCount);
     for (ndx = 0; ndx < numCount; ndx++) {
         value = Math.round(Math.random() * 10000);
-        id = 'id-ndx' + ndx;
+        id = 'id-a' + ndx;
         element = document.getElementById(id);
         if (element != null) {
             element.innerText = value;
@@ -50,20 +54,21 @@ function updateContent() {
 
 function invalidateGrid() {
     console.log('Invalidate grid');
-    drawGrid();
     updateContent();
 }
 
 function startRound(event) {
     event.preventDefault();
-    //init();
+    tryCount = 3;
     invalidateGrid();
 }
 
 //const workPage = document.getElementById('id-work-page');
 const startCmd = document.getElementById('id-cmd-start');
-const numCount = 12;
+const numCount = 22;
+
 var num = 0;
+var tryCount = 15;
 
 if (startCmd != null)
     console.log('Add listener');
