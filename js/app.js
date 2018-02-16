@@ -15,10 +15,13 @@ function init() {
 
 function compareAnswer(event) {
     var val = event.target.innerHTML;
+    var tm = new Date().getTime() - startTime;
+
     if (val === num.toString()) {
         tryCount--;
         if (tryCount === 0) {
-            alert('Round finish');
+            alert('Round finish, time: ' + tm/1000);
+
             return;
         }
         updateContent();
@@ -59,6 +62,7 @@ function invalidateGrid() {
 
 function startRound(event) {
     event.preventDefault();
+    startTime = new Date().getTime();
     tryCount = 3;
     invalidateGrid();
 }
@@ -69,6 +73,8 @@ const numCount = 22;
 
 var num = 0;
 var tryCount = 15;
+
+var startTime;
 
 if (startCmd != null)
     console.log('Add listener');
