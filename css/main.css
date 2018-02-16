@@ -115,7 +115,7 @@ html {
 
 .selector-box {
     flex-direction: column;
-    background-color: #0c5460;
+    background-color: chocolate;
 }
 
 .selector-question {
@@ -157,6 +157,13 @@ html {
 .card-text {
     display: table-cell;
     text-align: center;
+    vertical-align: middle;
+}
+
+.round-stat {
+    display: table-cell;
+    height: 30px;
+    color: white;
     vertical-align: middle;
 }
 
